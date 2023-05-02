@@ -6,6 +6,6 @@
   
 ***GHC Version:*** The Glorious Glasgow Haskell Compilation System, version 9.6.1
   
-***QuickCheck:*** Default available version: 0.3.0.4
+***QuickCheck:*** Default available version: 2.14.2
   
-***quickcheck-instances:***
+***quickcheck-instances:*** 0.3.29
