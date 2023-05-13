@@ -1,39 +1,11 @@
 import PRF
-import Numeric.Natural ( Natural )
 import Test.QuickCheck
-  ( Arbitrary ( arbitrary, shrink )
-  , Property
-  , arbitrarySizedNatural
-  , classify
-  , collect
+  ( Property
   , quickCheck
-  , shrinkIntegral
   , (===)
-  , sized
-  , oneof
   , (==>)
-  , verboseCheck
   )
-
-----------Instances for QuickCheck----------------------
-
-instance Arbitrary Nat where
-  arbitrary = sized $ \n -> genNat n
-    where
-      genNat 0 = return Zero
-      genNat n = oneof [return Zero, Succ <$> genNat (n - 1)]
-  shrink Zero     = []
-  shrink (Succ n) = n : shrink n
- 
-instance Arbitrary Natural where
-  arbitrary = arbitrarySizedNatural
-  shrink    = shrinkIntegral
-
-instance Ord Nat where
-  Zero <= _ = True
-  Succ m <= Succ n = m <= n
-  _ <= _ = False
-
+  --, verboseCheck
 --------------------Properties----------------------
 
 prop_f1 :: Nat -> Nat -> Property
