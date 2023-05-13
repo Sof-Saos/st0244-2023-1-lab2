@@ -12,6 +12,10 @@ run: lab2.exe
 
 clean: 
 	del *.o *.hi lab2.exe
-#rm -f *.o *.hi lab2.exe use if you're working on linux
+#For linux rm -f *.o *.hi lab2.exe 
 
-
+versions:
+	@ghc --version 
+	@cabal --version
+	@powershell -command "gc .ghc.environment.x86_64-mingw32-9.6.1"
+#For linux, use the next command >cat .ghc.environment.x86_64-mingw32-9.6.1
