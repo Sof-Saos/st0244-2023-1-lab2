@@ -21,7 +21,7 @@ instance Num Nat where --Define basics algebraic operations
 
   (*) :: Nat -> Nat -> Nat --Define mult operators
   (*) = f2
-  
+
   --required syntax of the instance
   abs :: Nat -> Nat 
   abs n = n
@@ -33,12 +33,14 @@ instance Num Nat where --Define basics algebraic operations
   negate :: Nat -> Nat
   negate n = n  
 instance Arbitrary Nat where --Generate random values
-  arbitrary = sized $ \n -> genNat n --random generation of values depending on n
+  --random generation of values depending on n
+  arbitrary = sized $ \n -> genNat n 
     where
       genNat :: Int -> Gen Nat --Funtion that generate a random value of Nat
       genNat 0 = return Zero
       genNat n = oneof [return Zero, Succ <$> genNat (n - 1)]
-  shrink Zero     = [] --No values are generated because there are no values smaller than zero
+  --No values are generated because there are no values smaller than zero
+  shrink Zero     = [] 
   --If the value generated is Succ then it generates smaller values than the previous one
   shrink (Succ n) = n : shrink n 
 instance Ord Nat where -- Compare Nats values to order them
