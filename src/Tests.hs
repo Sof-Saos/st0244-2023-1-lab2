@@ -12,6 +12,7 @@ import Test.QuickCheck
   , sized
   , oneof
   , (==>)
+  , verboseCheck
   )
 
 ----------Instances for QuickCheck----------------------
@@ -42,7 +43,10 @@ prop_f2 :: Nat -> Nat -> Property
 prop_f2 x y = (x * y) === (y * x)
 
 prop_f3 :: Nat -> Nat -> Property
-prop_f3 n _ = f3 n Zero === Succ Zero
+prop_f3 x _ = f3 x Zero === Succ Zero
+
+prop_f4 :: Nat -> Nat -> Property
+prop_f4 m n = (m > Zero && n > Zero) ==> f4 m n > m
 
 ---------------------------------------------------------
 main :: IO()
@@ -50,5 +54,8 @@ main = do
     quickCheck prop_f1
     quickCheck prop_f2
     quickCheck prop_f3
-    -- quickCheck prop_f4
+    quickCheck prop_f4
+    verboseCheck prop_f4
     -- quickCheck prop_f5
+
+    --verbose para ver que casos usa

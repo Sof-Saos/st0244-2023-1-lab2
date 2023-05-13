@@ -28,7 +28,6 @@ instance Num Nat where
 
   negate :: Nat -> Nat
   negate n = n  
-
 --------------  Funciones -------------
 f1 :: Nat -> Nat -> Nat --Suma
 f1 m n = recNat n (\ _ y -> Succ y) m
@@ -39,19 +38,17 @@ f2 m = recNat Zero (\n acc -> f2 acc m)
 f3 :: Nat -> Nat -> Nat --Potencia
 f3 m n = recNat (Succ Zero) (\_ y -> f2 m y) n
 
--- f4 :: 
--- f4 m
+f4 :: Nat -> Nat -> Nat -- Suma recursiva que utiliza f1
+f4 m n = recNat n (\ _ acc -> f1 m acc) m
 
--- f5 :: 
+-- f5 :: Nat -> Nat -> Nat
 -- f5 
 
 recNat :: a -> (Nat -> a -> a) -> Nat -> a
 recNat a _ Zero = a
 recNat a h (Succ n) = h n (recNat a h n)
-
 toInteger :: Nat -> Integer
 toInteger = recNat 0 (\_ acc -> acc + 1)
-
 instance Show Nat where
   show n = show (toInteger n)
 
