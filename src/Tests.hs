@@ -55,7 +55,6 @@ main = do
     quickCheck prop_f2
     quickCheck prop_f3
     quickCheck prop_f4
-    verboseCheck prop_f4
     -- quickCheck prop_f5
 
     --verbose para ver que casos usa
