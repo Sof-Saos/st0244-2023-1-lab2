@@ -2,9 +2,7 @@ module PRF  where
 import Prelude hiding (toInteger)
 import Test.QuickCheck (Arbitrary, arbitrary, oneof, sized, shrink, Gen)
 
-
 data Nat = Zero | Succ Nat
-
 ----Instances
 instance Eq Nat where --Compare Nats
    Zero == Zero         = True
@@ -15,34 +13,30 @@ instance Num Nat where --Define basics algebraic operations
   fromInteger n
     | n <= 0    = Zero
     | otherwise = Succ (fromInteger (n - 1))
-
   (+) :: Nat -> Nat -> Nat --Define Sum operators
   (+) = f1
 
   (*) :: Nat -> Nat -> Nat --Define mult operators
   (*) = f2
-
   --required syntax of the instance
-  abs :: Nat -> Nat 
+  abs :: Nat -> Nat
   abs n = n
-
   signum :: Nat -> Nat
   signum Zero   = Zero
   signum Succ{} = Succ Zero
-
   negate :: Nat -> Nat
-  negate n = n  
+  negate n = n
 instance Arbitrary Nat where --Generate random values
   --random generation of values depending on n
-  arbitrary = sized $ \n -> genNat n 
+  arbitrary = sized $ \n -> genNat n
     where
       genNat :: Int -> Gen Nat --Funtion that generate a random value of Nat
       genNat 0 = return Zero
       genNat n = oneof [return Zero, Succ <$> genNat (n - 1)]
   --No values are generated because there are no values smaller than zero
-  shrink Zero     = [] 
+  shrink Zero     = []
   --If the value generated is Succ then it generates smaller values than the previous one
-  shrink (Succ n) = n : shrink n 
+  shrink (Succ n) = n : shrink n
 instance Ord Nat where -- Compare Nats values to order them
   Zero <= _ = True
   Succ m <= Succ n = m <= n
