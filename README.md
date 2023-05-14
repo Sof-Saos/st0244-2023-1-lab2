@@ -2,7 +2,7 @@
 
 ***Name:*** Sofía Salamanca Osorio 
   
-***Operating system versions used:*** Microsoft Windows Version 22H2 
+***Operating system versions used:*** Microsoft Windows Version 21H2 
 
 ***GHC Version:*** The Glorious Glasgow Haskell Compilation System, version 9.6.1
 
